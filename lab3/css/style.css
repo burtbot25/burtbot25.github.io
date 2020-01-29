@@ -1,0 +1,110 @@
+#main{
+    border-style: solid;
+    border-width: 1px;
+    border-color: lightgrey;
+    padding: 25px 15px;
+
+}
+#artist_list{
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+body {
+    margin: auto;
+    width: 40%;
+    padding: 10px;
+}
+.input_form {
+    width: 80%;
+    height: 2em;
+    text-align: center;
+    border-style: solid;
+    border-color: lightgray;
+    border-width: 1px;
+    border-radius: 5px;
+}
+.input_button{
+    width: 15%;
+    background-color: lightgray;
+    border: none;
+    color: black;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+#artist_input_form_button{
+    width: 40%;
+    background-color: lightgray;
+    border: none;
+    color: black;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+.artist_box{
+    border-style: solid;
+    border-width: 1px;
+    border-color: lightgrey;
+    padding: 3%;
+    overflow: hidden;
+}
+.artist_box:hover{
+    background-color: lightgray;
+}
+.headshot{
+    float: left;
+    padding-right: 2%;
+}
+.artist_info{
+    float: left;
+    width: 60%;
+    padding-top: 0px;
+}
+.delete_button{
+    float: right;
+    margin-top: 20px;
+    border-radius: 4px;
+    background-color: rgb(255, 0, 98);
+    border: none;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 12px;
+}
+
+h1 {
+    font-family: 'Amaranth';
+}
+h3, p {
+    margin-top: auto;
+    margin-bottom: auto;
+    vertical-align: middle;
+    color: rgb(73, 73, 73);
+    font-family: 'Be Vietnam';
+}
+
+#add_artist_forms{
+    display: none;
+    width: 70%;
+    margin: auto;
+    text-align: center;
+}
+.artist_input_form{
+    width: 70%;
+    border-radius: 5px;
+    height: 2em;
+    text-align: center;
+    border-style: solid;
+    border-color: lightgray;
+    border-width: 1px;
+}
