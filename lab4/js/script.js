@@ -61,7 +61,7 @@ function searchArtist(event) {
         array.forEach(artist => {
             var text = document.getElementById("search_form").value;
             // if search form text in artist name create entry into list
-            if (artist.name.toLowerCase().includes(text)){
+            if (artist.name.toLowerCase().includes(text.toLowerCase())){
                 createEntry(artist.name, artist.about, artist.img);
             }
         });
