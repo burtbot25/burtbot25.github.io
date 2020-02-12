@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Wilburt Herrera - Lab4</title>
+        <link rel="stylesheet" href="css/style.css">
+        <link href='https://fonts.googleapis.com/css?family=Amaranth' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Be Vietnam' rel='stylesheet'>
+        <script src="js/script.js" defer></script>
+    </head>
+    <body onload="load()">
+        <div id="main">
+            <h1>Artist Directory</h1>
+            <input id="search_form" class="input_form" type="text" placeholder="Enter name here" name="directory_input">
+            <button class="input_button" onclick="showAddArtistForm()">Add</button>
+            <button class="input_button" onclick="searchArtist()">Search</button>
+        </div>
+        <div id="add_artist_forms">
+            <form action="/add" method="POST">
+                <input class="artist_input_form" type="text" placeholder="Artist Name" name="artist_name_input" maxlength="40"><br>
+                <input class="artist_input_form" type="text" placeholder="About Artist" name="artist_about_input" maxlength="40"><br>
+                <input class="artist_input_form" type="text" placeholder="Image URL" name="artist_img_input"><br>
+                <button id="artist_input_form_button" value="submit" type="submit" onclick="clearHide()">Add</button>
+                <!-- <button id="artist_input_form_button" onclick="addArtist()">Add</button> -->
+            </form>
+        </div>
+        <div id="artist_list">
+            <!-- New Artist Entries Go Here -->
+        </div>
+    </body>
+</html>
