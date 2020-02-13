@@ -144,7 +144,7 @@ function deleteElement(node){
     if (array != null){
         // Find artist_array element which matches the h3_value of this artist and delete it
         array.forEach(artist => {
-            if (artist.name.includes(h3_value)){
+            if (artist.name === h3_value){
                 var index = array.indexOf(h3_value);
                 array.splice(index, 1)
                 console.log(h3_value + " removed from local storage");

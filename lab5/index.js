@@ -33,7 +33,7 @@ app.get('/artists', (req,res) => {
 app.post('/add', async (req, res) =>{
     var artist_list;
 
-    // get list of json objects from file
+    // // get list of json objects from file
     await readFile("artist_list.json","utf-8").
     then(data => {
         artist_list = JSON.parse(data)
@@ -42,9 +42,9 @@ app.post('/add', async (req, res) =>{
 
     // create new artist entry
     const artist_data = {
-        name: req.body.artist_name_input,
-        about: req.body.artist_about_input,
-        img: req.body.artist_img_input
+        "name": req.body.artist_name_input,
+        "about": req.body.artist_about_input,
+        "img": req.body.artist_img_input
     }
     // append artist to artist_list
     artist_list.push(artist_data);

@@ -2,7 +2,7 @@ async function load(){
     // loads artist list from artist_list.json file on body load
     var array;
     // get artist_list
-    await fetch('http://localhost:8000/artists').then(res => {return res.json()
+    await fetch('/artists').then(res => {return res.json()
     }).then(data => {
         console.log("GOT JSON " + data[0].name);
         array = data;
@@ -14,7 +14,6 @@ async function load(){
             createEntry(array[i].name, array[i].about, array[i].img);
         }
     }
-
 }
 
 function showAddArtistForm(event){
@@ -35,7 +34,7 @@ async function searchArtist(event) {
     
     var array;
     // get artist_list
-    await fetch('http://localhost:8000/artists').then(res => {return res.json()
+    await fetch('/artists').then(res => {return res.json()
     }).then(data => {
         console.log("searching " + data[0].name);
         array = data;
@@ -128,7 +127,7 @@ async function deleteElement(node){
 
     // get artist_list
     var array;
-    await fetch('http://localhost:8000/artists').then(res => {return res.json()
+    await fetch('/artists').then(res => {return res.json()
     }).then(data => {
         console.log("GOT JSON " + data[0].name);
         array = data;
@@ -136,15 +135,15 @@ async function deleteElement(node){
     
     // Remove artist from artist_array in localstorage
     if (array != null){
-        // Find artist_array element which matches the h3_value of this artist and delete it
-        array.forEach(artist => {
-            if (artist.name.includes(h3_value)){
-                var index = array.indexOf(h3_value);
-                array.splice(index, 1)
+
+        for (var i = 0; i < array.length; i++){
+            if (array[i].name === h3_value){
+                array.splice(i, 1);
                 console.log(h3_value + " removed from artist_list");
+                break;
             }
-        });
-        fetch('http://localhost:8000/save', {
+        }
+        fetch('/save', {
             method: 'POST', // or 'PUT'
             headers: {
               'Content-Type': 'application/json',
