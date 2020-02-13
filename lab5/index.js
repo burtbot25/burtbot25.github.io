@@ -38,13 +38,14 @@ app.post('/add', async (req, res) =>{
     then(data => {
         artist_list = JSON.parse(data)
     }).
-    catch(error => console.log("ERROR " + error))
+    catch(error => console.log("Error reading artist_list.json " + error))
 
     // create new artist entry
     const artist_data = {
         "name": req.body.artist_name_input,
         "about": req.body.artist_about_input,
-        "img": req.body.artist_img_input
+        "img": req.body.artist_img_input,
+        "id": new Date()
     }
     // append artist to artist_list
     artist_list.push(artist_data);

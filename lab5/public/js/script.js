@@ -4,14 +4,17 @@ async function load(){
     // get artist_list
     await fetch('/artists').then(res => {return res.json()
     }).then(data => {
-        console.log("GOT JSON " + data[0].name);
-        array = data;
-    });
+        if (data != null){
+            console.log("Loading Artists");
+            array = data;
+        }
+    }).
+    catch(error => console.log("Error Loading Artists"));
 
     // Creates the list of artist boxes if existing data is present
     if (array != null){
         for (var i = 0; i < array.length; i++){
-            createEntry(array[i].name, array[i].about, array[i].img);
+            createEntry(array[i].name, array[i].about, array[i].img, array[i].id);
         }
     }
 }
@@ -48,7 +51,7 @@ async function searchArtist(event) {
         array.forEach(artist => {
             // if search form text in artist name create entry into list
             if (artist.name.toLowerCase().includes(text.toLowerCase())){
-                createEntry(artist.name, artist.about, artist.img);
+                createEntry(artist.name, artist.about, artist.img, artist.id);
             }
         });
     }
@@ -63,16 +66,18 @@ function clearChildren(artist_list){
     }
 }
 
-function createEntry(artist_name, artist_about, artist_img){
+function createEntry(artist_name, artist_about, artist_img, artist_id){
     // Create a new artist box entry and appends to the artist_list.
 
     var name = artist_name;
     var about = artist_about; 
     var img_url = artist_img;
+    var id = artist_id;
 
     // Create div 1
     var div_node = document.createElement("DIV");
     div_node.className = "artist_box";
+    div_node.id = id;
 
     // Create div 2
     var div_node2 = document.createElement("DIV");
@@ -123,7 +128,7 @@ async function deleteElement(node){
     // Removes element from DOM
     node.parentElement.parentElement.removeChild(node.parentElement);
     
-    h3_value = node.parentElement.firstChild.lastElementChild.firstChild.name;
+    node_id = node.parentElement.id;
 
     // get artist_list
     var array;
@@ -131,29 +136,37 @@ async function deleteElement(node){
     }).then(data => {
         console.log("GOT JSON " + data[0].name);
         array = data;
-    });
-    
-    // Remove artist from artist_array in localstorage
-    if (array != null){
 
-        for (var i = 0; i < array.length; i++){
-            if (array[i].name === h3_value){
-                array.splice(i, 1);
-                console.log(h3_value + " removed from artist_list");
-                break;
+        // Remove artist from artist_array in localstorage
+        if (array != null){
+
+            for (var i = 0; i < array.length; i++){
+                if (array[i].id === node_id){
+                    if (array.length > 1){
+                        array.splice(i, 1);
+                        console.log(array[i].name + " removed from artist_list");
+                        console.log(array[i].id + " removed from artist_list");
+                        break;
+                    } else {
+                        array = [];
+                    }
+                }
             }
+            fetch('/save', {
+                method: 'POST', // or 'PUT'
+                headers: {
+                'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(array),
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
         }
-        fetch('/save', {
-            method: 'POST', // or 'PUT'
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(array),
-          })
-          .catch((error) => {
-            console.error('Error:', error);
-          });
-    }
+    }).
+    catch(error => console.log("Error Deleting Artist"));
+    
+    
 }
 
 function clearForms(){
