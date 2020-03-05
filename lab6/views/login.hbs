@@ -1,0 +1,15 @@
+<div id="login_box">
+    <h1>Member Login</h1>
+    <br>
+    <div id="login_section">
+        <form id="login_form" action="/login" method="POST">
+            <input class="login_user_field" type="text" placeholder="Username" name="username_input"><br>
+            <input class="login_password_field" type="text" placeholder="Password" name="password_input"><br>
+            <br>
+            <button id="login_button" value="submit" type="submit">Login</button>
+        </form>
+        {{#if loginFailed}}
+            <h3>Wrong username and password</h3>
+        {{/if}}
+    </div>
+</div>

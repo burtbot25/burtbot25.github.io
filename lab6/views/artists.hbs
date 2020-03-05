@@ -1,0 +1,39 @@
+<nav id="logout">
+    <form action="/" method="GET">
+        <button class="input_button logout_button" value="submit" type="submit">LOGOUT</button>
+    </form>
+</nav>
+<div id="main">
+    <h1>Artist Directory</h1>
+    <form action="/search" method="POST">
+        <input id="search_form" class="input_form" type="text" placeholder="Enter name here" name="directory_input">
+        <button class="input_button search_button" value="submit" type="submit">Search</button>
+    </form>
+    <button class="input_button add_button" onclick="showAddArtistForm()">Add</button>
+</div>
+<div id="add_artist_forms">
+    <form action="/add" method="POST">
+        <input class="artist_input_form" type="text" placeholder="Artist Name" name="artist_name_input" maxlength="40"><br>
+        <input class="artist_input_form" type="text" placeholder="About Artist" name="artist_about_input" maxlength="40"><br>
+        <input class="artist_input_form" type="text" placeholder="Image URL" name="artist_img_input"><br>
+        <button id="artist_input_form_button" value="submit" type="submit" >Add</button>
+        <!-- <button id="artist_input_form_button" onclick="addArtist()">Add</button> -->
+    </form>
+</div>
+<div id="artist_list">
+    {{#each artist}}
+        <form action="/delete" method="POST">
+            <div id="{{this.id}}" class="artist_box">
+                <div>
+                    <img class="headshot" src="{{this.img}}" alt="artist">
+                    <div class="artist_info">
+                        <h3>{{this.name}}</h3>
+                        <p>{{this.about}}</p>
+                    </div>
+                </div>
+                <button class="delete_button" value="submit" type="submit">Delete</button>
+            </div>
+            <input type="text" name="artist_id_input" value="{{this.id}}" hidden>
+        </form>
+    {{/each}}
+</div>
